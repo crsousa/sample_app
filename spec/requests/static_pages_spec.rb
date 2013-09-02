@@ -10,6 +10,7 @@ describe "Static pages" do
     it { should have_content('Sample App') }
     it { should have_title(full_title('')) }
     it { should_not have_title('| Home') }
+
     
 
     describe "for signed-in users" do
@@ -26,6 +27,11 @@ describe "Static pages" do
           expect(page).to have_selector("li##{item.id}", text: item.content)
         end
       end
+
+      it "should have the correct micropost count" do
+        should have_content("#{user.microposts.count} microposts") 
+      end
+
     end    
   end
 
